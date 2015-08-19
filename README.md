@@ -13,7 +13,7 @@ $ composer require pike/slim-jade
 
 ## Injection
 ```php
-$view = new \JadeView(
+$view = new Slim\Views\JadeView(
     $pathToYourTemplates,
     $ArrayOfYourSettings
         );
