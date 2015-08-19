@@ -19,7 +19,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "Slim\\Views": "src"
+            "Slim\\Views\\": "src"
         }
     },
     "minimum-stability": "dev"
