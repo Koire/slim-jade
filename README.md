@@ -8,7 +8,7 @@ Use at your own risk, I haven't used it much yet.
 Requires Slim 3 and at least PHP 5.4.0
 ## Install 
 ```bash
-$ composer require riechao/slim-jade
+$ composer require pike/slim-jade
 ```
 
 ## Injection
