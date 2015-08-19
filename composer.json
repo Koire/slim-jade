@@ -3,10 +3,12 @@
     "description": "A helper for slim framework view to allow the use of phpJade as a template engine",
     "type": "library",
     "require": {
-        "kylekatarnls/jade-php": "dev-master"
+        "kylekatarnls/jade-php": "dev-master",
+        "slim/slim": "^3.0.0-beta2"
     },
     "require-dev": {
-        "kylekatarnls/jade-php": "dev-master"
+        "kylekatarnls/jade-php": "dev-master",
+        "slim/slim": "^3.0.0@beta"
     },
     "license": "MIT",
     "authors": [
