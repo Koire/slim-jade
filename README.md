@@ -18,3 +18,5 @@ $view = new Slim\Views\JadeView(
     $ArrayOfYourSettings
         );
 ```
+
+** I have no idea what I'm doing with packagist and github **
