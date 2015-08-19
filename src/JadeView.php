@@ -1,5 +1,5 @@
 <?php
-namespace Slim\Views;
+namespace pike\slim;
 use Psr\Http\Message\ResponseInterface;
 use Jade\Jade;
 
