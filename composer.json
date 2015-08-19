@@ -1,0 +1,19 @@
+{
+    "name": "pike/slim-jade",
+    "description": "A helper for slim framework view to allow the use of phpJade as a template engine",
+    "type": "library",
+    "require": {
+        "kylekatarnls/jade-php": "dev-master"
+    },
+    "require-dev": {
+        "kylekatarnls/jade-php": "dev-master"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "William Pike",
+            "email": "pikewb@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev"
+}
