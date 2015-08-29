@@ -1,6 +1,7 @@
-<?php
-namespace Slim\Views;
+<?php namespace Slim\Views;
+
 use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\RequestInterface;
 use Jade\Jade;
 
 /**
@@ -15,6 +16,7 @@ use Jade\Jade;
  */
 class JadeView implements \ArrayAccess, \Pimple\ServiceProviderInterface
 {
+
     /**
      * Jade Class
      *
@@ -28,7 +30,7 @@ class JadeView implements \ArrayAccess, \Pimple\ServiceProviderInterface
      * @var Path
      */
     protected $path;
-    
+
     /**
      * Default view variables
      *
@@ -36,9 +38,9 @@ class JadeView implements \ArrayAccess, \Pimple\ServiceProviderInterface
      */
     protected $defaultVariables = [];
 
-    /********************************************************************************
+    /*     * ******************************************************************************
      * Constructors and service provider registration
-     *******************************************************************************/
+     * ***************************************************************************** */
 
     /**
      * Create new Jade View
@@ -62,10 +64,9 @@ class JadeView implements \ArrayAccess, \Pimple\ServiceProviderInterface
         // Register this view with the Slim container
         $container['view'] = $this;
     }
-
-    /********************************************************************************
+    /*     * ******************************************************************************
      * Methods
-     *******************************************************************************/
+     * ***************************************************************************** */
 
     /**
      * Proxy method to add or overwrite a filter.
@@ -78,7 +79,6 @@ class JadeView implements \ArrayAccess, \Pimple\ServiceProviderInterface
         $this->jade->filter($name, $filter);
     }
 
-
     /**
      * Fetch rendered template
      *
@@ -90,7 +90,7 @@ class JadeView implements \ArrayAccess, \Pimple\ServiceProviderInterface
     public function fetch($template, $data = [])
     {
         $data = array_merge($this->defaultVariables, $data);
-        return $this->jade->render($this->path.$template.'.jade',$data);
+        return $this->jade->render($this->path . $template . '.jade', $data);
     }
 
     /**
@@ -103,14 +103,31 @@ class JadeView implements \ArrayAccess, \Pimple\ServiceProviderInterface
      */
     public function render(ResponseInterface $response, $template, $data = [])
     {
-         $response->getBody()->write($this->fetch($template, $data));
+        $response->getBody()->write($this->fetch($template, $data));
 
-         return $response;
+        return $response;
     }
 
-    /********************************************************************************
+    /**
+     * Renders a response with CSRF (only if you are using slimCSRF
+     * @param type $request
+     * @param type $response
+     * @param type $template
+     * @param array $data
+     * @return type
+     */
+    public function renderCSRF(RequestInterface $request,ResponseInterface $response, $template, array $data = [])
+    {
+        $data += [
+            'csrf_name' => $request->getAttribute('csrf_name'),
+            'csrf_value' => $request->getAttribute('csrf_value')
+        ];
+        return $this->render($response, $template, $data);
+    }
+
+    /* *******************************************************************************
      * Accessors
-     *******************************************************************************/
+     * ***************************************************************************** */
 
     /**
      * Return the Jade Object
@@ -121,10 +138,9 @@ class JadeView implements \ArrayAccess, \Pimple\ServiceProviderInterface
     {
         return $this->jade;
     }
-
-    /********************************************************************************
+    /*     * ******************************************************************************
      * ArrayAccess interface
-     *******************************************************************************/
+     * ***************************************************************************** */
 
     /**
      * Does this collection have a given key?
@@ -170,10 +186,9 @@ class JadeView implements \ArrayAccess, \Pimple\ServiceProviderInterface
     {
         unset($this->defaultVariables[$key]);
     }
-
-    /********************************************************************************
+    /*     * ******************************************************************************
      * Countable interface
-     *******************************************************************************/
+     * ***************************************************************************** */
 
     /**
      * Get number of items in collection
@@ -184,10 +199,9 @@ class JadeView implements \ArrayAccess, \Pimple\ServiceProviderInterface
     {
         return count($this->defaultVariables);
     }
-
-    /********************************************************************************
+    /*     * ******************************************************************************
      * IteratorAggregate interface
-     *******************************************************************************/
+     * ***************************************************************************** */
 
     /**
      * Get collection iterator
