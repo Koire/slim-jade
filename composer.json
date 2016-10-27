@@ -7,7 +7,7 @@
         "slim/slim": "^3.0.0@beta"
     },
     "require-dev": {
-        "kylekatarnls/jade-php": "dev-master",
+        "pug-php/pug": "^2.4",
         "slim/slim": "^3.0.0@beta"
     },
     "license": "MIT",
